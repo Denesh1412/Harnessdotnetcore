@@ -1,0 +1,34 @@
+pipeline:
+    name: harnessproj1
+    identifier: harnessproj1
+    projectIdentifier: project1
+    orgIdentifier: default
+    tags: {}
+    properties:
+        ci:
+            codebase:
+                connectorRef: gitnew
+                build: <+input>
+    stages:
+        - stage:
+              name: buildstage
+              identifier: buildstage
+              type: CI
+              spec:
+                  cloneCodebase: true
+                  infrastructure:
+                      type: KubernetesDirect
+                      spec:
+                          connectorRef: kubeconnector
+                          namespace: default
+                  execution:
+                      steps:
+                          - step:
+                                type: Run
+                                name: Run
+                                identifier: Run
+                                spec:
+                                    connectorRef: Dockerconnector
+                                    image: maven:latest
+                                    command: ls
+                                description: To run and test
