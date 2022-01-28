@@ -20,7 +20,7 @@ pipeline:
                       type: KubernetesDirect
                       spec:
                           connectorRef: kubeconnector
-                          namespace: default
+                          namespace: harness-delegate-ng
                   execution:
                       steps:
                           - step:
